@@ -1,0 +1,1 @@
+GRANT ALL PRIVILEGES ON *.* TO 'plop'@'localhost' IDENTIFIED BY 'password' WITH GRANT OPTION;
