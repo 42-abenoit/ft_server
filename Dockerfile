@@ -37,5 +37,8 @@ RUN chmod 711 system_init.sh
 CMD ./system_init.sh
 RUN rm /var/www/html/index.nginx-debian.html
 
+RUN rm admin_setup.sh mysql_install.sh wordpress_setup.sh
+RUN rm normal_user_conf.sql pma_user_conf.sql wordpress_user_conf.sql wordpress.sql
+
 EXPOSE 80
 EXPOSE 443
