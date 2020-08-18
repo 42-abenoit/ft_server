@@ -2,6 +2,7 @@ FROM debian:buster
 
 RUN apt-get update
 RUN apt-get upgrade -y
+RUN apt-get install -y wget
 
 RUN apt-get install -y nginx
 
@@ -14,7 +15,11 @@ RUN ./mysql_install.sh
 
 RUN apt install -y php-fpm php-mysql
  
-COPY srcs/phpmyadmin /var/www/html/phpmyadmin
+RUN wget https://files.phpmyadmin.net/phpMyAdmin/4.9.5/phpMyAdmin-4.9.5-english.tar.gz
+RUN mkdir /var/www/html/phpmyadmin
+RUN tar -xzf /phpMyAdmin-4.9.5-english.tar.gz --strip-component=1 -C /var/www/html/phpmyadmin
+RUN rm /phpMyAdmin-4.9.5-english.tar.gz
+COPY srcs/config.inc.php /var/www/html/phpmyadmin/congig.inc.php
 COPY srcs/admin_setup.sh admin_setup.sh
 COPY srcs/pma_user_conf.sql pma_user_conf.sql
 COPY srcs/normal_user_conf.sql normal_user_conf.sql
